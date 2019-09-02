@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- Load our React component. -->
+    <script type = "text/babel">
+
+   	class Memoria extends React.Component{
+
+		reglas() {
+			this.state.estado[0]=true
+			this.forceUpdate()
+		}
+
+		constructor (props){
+			super()
+			this.state={
+				estado:[
+				false,
+				false,
+				false,
+				false,
+				false,
+				false,
+				false,
+				false,
+				false,
+				false,
+				false,
+				false,
+				false,
+				false,
+				false,
+				false,				
+				]
+			}
+
+		}
+
+   		render(){
+
+			var listacompleta=[    
+					"./imagenes/houston.jpg","./imagenes/milwaukee.png","./imagenes/toronto.png","./imagenes/dallas.jpg", "./imagenes/gsw.jpg","./imagenes/okc.jpg",
+					"./imagenes/houston.jpg","./imagenes/lakers.jpg","./imagenes/lakers.jpg","./imagenes/dallas.jpg","./imagenes/miami.jpg", 
+					"./imagenes/milwaukee.png","./imagenes/okc.jpg","./imagenes/gsw.jpg","./imagenes/toronto.png","./imagenes/miami.jpg"
+
+			]
+
+			var lista=[]
+			var contador=0
+			
+			var grid = {
+   				border: "black",
+				display: "grid",
+				gridGap: "5px",
+				gridAutoColumns: "110px",
+				gridTemplateColumns: "auto auto auto auto"
+				}
+			
+			while (contador!= 16){
+				
+				if(!this.state.estado[contador]){
+					lista.push(<img src= {"./imagenes/nba-logo.png"}onClick={this.reglas.bind(this)}/>)
+				}
+				else{
+					lista.push(<img src= {listacompleta[contador]} onClick={this.reglas.bind(this)}/>)
+				}
+				
+				contador=contador+1
+
+				
+
+			}
+			return (<div style= {grid}>{lista}</div>)
+   			
+			
+   		}
+
+
+   	}
+
+
+   	class Grid extends React.Component{
+
+
+   		render(){
+
+
+   			
+
+   			var grid = {
+   				border: "black",
+				display: "grid",
+				gridGap: "5px",
+				gridAutoColumns: "110px",
+				gridTemplateColumns: "auto auto auto auto"
+				}
+
+   			return (<div style = {grid}> 
+   				<Memoria/>
+   				</div>)
+   		}
+
+    }
+
+
+   	ReactDOM.render(
+  	<Grid/>,
+  	document.getElementById('root')
+	);
+
+
+
+
+
+
+
+    </script>
+
+    
+
+    <meta charset="UTF-8" />
+    <title>Memoria</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+  </head>
+  <body>
+
+    <div id="root"></div>
+   
+
+    </main>
+
+  </body>
+</html>

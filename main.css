@@ -1,0 +1,69 @@
+/* greed */ 
+main > * {
+	background-color: red;
+	padding: 5px;
+	font-size: 3em;
+
+
+
+}
+
+/*definimos el grid containter*/
+main{
+	display: grid;
+	grid-gap: 5px;
+	grid-auto-columns: 110px;
+	grid-template-columns: 
+
+
+}
+
+aside:foto1{
+	grid-area: foto1;
+}
+
+aside:foto2{
+	grid-area: foto2;
+}
+aside:foto3{
+	grid-area: foto3;
+}
+aside:foto4{
+	grid-area: foto4;
+}
+aside:foto5{
+	grid-area: foto5;
+}
+aside:foto6{
+	grid-area: foto6;
+}
+aside:foto7{
+	grid-area: foto7;
+}
+aside:foto8{
+	grid-area: foto8;
+}
+aside:foto9{
+	grid-area: foto9;
+}
+aside:foto10{
+	grid-area: foto10;
+}
+aside:foto11{
+	grid-area: foto11;
+}
+aside:foto12{
+	grid-area: foto12;
+}
+aside:foto13{
+	grid-area: foto13;
+}
+aside:foto14{
+	grid-area: foto14;
+}
+aside:foto15{
+	grid-area: foto15;
+}
+aside:foto16{
+	grid-area: foto16;
+}
