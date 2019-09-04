@@ -11,14 +11,56 @@
 
    	class Memoria extends React.Component{
 
-		reglas() {
-			this.state.estado[0]=true
+		reglas(id,carta) {
+			if (this.state.cartas1===null){
+				this.state.cartas1=carta
+				
+			}
+			else if(this.state.cartas2===null){
+				this.state.cartas2=carta
+				
+			}
+
+			this.state.estado[id]=!this.state.estado[id]
 			this.forceUpdate()
+			
+
+
+			if(this.state.cartas1 && this.state.cartas2){
+				if(this.state.cartas1===this.state.cartas2){
+					this.state.puntos+=1
+					console.log(this.state.puntos)
+
+					this.state.cartas1=null
+					this.state.cartas2=null
+				}
+				else{
+
+					this.state.cartas2=null
+					setTimeout(() => {
+				
+					}, 10000);
+					this.state.estado[id]=false
+					this.forceUpdate()
+					
+					return
+				}
+			}
+
+
+
+
+			
 		}
 
 		constructor (props){
 			super()
 			this.state={
+
+				puntos: 0,
+				cartas1:null,
+				cartas2:null,
+
 				estado:[
 				false,
 				false,
@@ -64,10 +106,10 @@
 			while (contador!= 16){
 				
 				if(!this.state.estado[contador]){
-					lista.push(<img src= {"./imagenes/nba-logo.png"}onClick={this.reglas.bind(this)}/>)
+					lista.push(<img src= {"./imagenes/nba-logo.png"} onClick={this.reglas.bind(this,contador,listacompleta[contador]) }/> )
 				}
 				else{
-					lista.push(<img src= {listacompleta[contador]} onClick={this.reglas.bind(this)}/>)
+					lista.push(<img src= {listacompleta[contador]} onClick={this.reglas.bind(this,contador,listacompleta[contador]) }/>)
 				}
 				
 				contador=contador+1
