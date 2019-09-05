@@ -23,17 +23,22 @@
 				
 			}
 
+
 			
 			this.state.estado[id]=!this.state.estado[id]
-			this.state.turnos=+1
 			this.forceUpdate()
 			
+			if (this.state.estado[this.state.estadocarta1]===true){
+				this.state.intentos=this.state.intentos+1
+				console.log(this.state.intentos)
+			}
 
 
 			if(this.state.cartas1 && this.state.cartas2){
 				if(this.state.cartas1===this.state.cartas2){
-					this.state.puntos+=1
-					console.log(this.state.puntos)
+					
+					this.forceUpdate()
+					
 					
 					this.state.cartas1=null
 					this.state.cartas2=null
@@ -41,10 +46,7 @@
 				else{
 					setTimeout(() => {
 						
-						
-						
 
-						
 						this.state.cartas2=null
 						this.state.cartas1=null
 						this.state.estado[this.state.estadocarta1]=false
@@ -56,10 +58,26 @@
 					
 					return
 				}
+
 			}
 
 			
-			if (this.state.puntos===8){
+			if (this.state.estado[0]===true && 
+				this.state.estado[1]===true &&
+				this.state.estado[2]===true &&
+				this.state.estado[3]===true &&
+				this.state.estado[4]===true &&
+				this.state.estado[5]===true &&
+				this.state.estado[6]===true &&
+				this.state.estado[7]===true &&
+				this.state.estado[8]===true &&
+				this.state.estado[9]===true &&
+				this.state.estado[10]===true &&
+				this.state.estado[11]===true &&
+				this.state.estado[12]===true &&
+				this.state.estado[13]===true &&
+				this.state.estado[14]===true &&
+				this.state.estado[15]===true ){
 
 				setTimeout(() => {
 					alert("¡FELICIDADES GANASTE!")
@@ -100,9 +118,9 @@
 				puntos: 0,
 				cartas1:null,
 				cartas2:null,
-				turnos:0,
-				estadocarta1:null,
-				estadocarta2:null,
+				intentos:0,
+
+
 		
 			
 
@@ -153,10 +171,12 @@
 			while (contador!= 16){
 				
 				if(!this.state.estado[contador]){
-					lista.push(<img src= {"./imagenes/nba-logo.png"} onClick={this.reglas.bind(this,contador,listacompleta[contador],) }/> )
+					lista.push(<img src= {"./imagenes/nba-logo.png"} onClick={this.reglas.bind(this,contador,listacompleta[contador],)} /> )
+					
 				}
 				else{
-					lista.push(<img src= {listacompleta[contador]} onClick={this.reglas.bind(this,contador,listacompleta[contador],) }/>)
+					lista.push(<img src= {listacompleta[contador]} onClick={this.reglas.bind(this,contador,listacompleta[contador],)}/>)
+					
 					
 				}
 				
@@ -180,17 +200,23 @@
    		render(){
 
 
-   			
+			
+
 
    			var grid = {
    				border: "black",
 				display: "grid",
 				gridGap: "5px",
 				gridAutoColumns: "110px",
-				gridTemplateColumns: "auto auto auto auto"
+				gridTemplateColumns: "auto auto auto auto",
 				}
 
-   			return (<div style = {grid}> 
+				const element = <h1>Hello, world</h1>
+
+   			return (
+				   
+				<div text ={element} style = {grid}> 
+
    				<Memoria/>
    				</div>)
    		}
@@ -198,10 +224,15 @@
     }
 
 
+
+
    	ReactDOM.render(
   	<Grid/>,
   	document.getElementById('root')
 	);
+
+	const element = <h1>Hello, world</h1>;
+
 
 
 
