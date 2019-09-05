@@ -23,10 +23,9 @@
 				
 			}
 
-
+			
 			this.state.estado[id]=!this.state.estado[id]
 			this.state.turnos=+1
-			console.log(this.state.turnos)
 			this.forceUpdate()
 			
 
@@ -34,14 +33,16 @@
 			if(this.state.cartas1 && this.state.cartas2){
 				if(this.state.cartas1===this.state.cartas2){
 					this.state.puntos+=1
+					console.log(this.state.puntos)
 					
-					this.state.turnos=+1
 					this.state.cartas1=null
 					this.state.cartas2=null
 				}
 				else{
 					setTimeout(() => {
-						this.state.turnos=+1
+						
+						
+						
 
 						
 						this.state.cartas2=null
@@ -51,14 +52,43 @@
 						this.forceUpdate()
 					}, 500);
 
-
+				
 					
 					return
 				}
 			}
 
+			
+			if (this.state.puntos===8){
 
+				setTimeout(() => {
+					alert("¡FELICIDADES GANASTE!")
+					location.reload();
+					this.state.cartas2=null
+					this.state.cartas1=null
+					estado:[
+					false,
+					false,
+					false,
+					false,
+					false,
+					false,
+					false,
+					false,
+					false,
+					false,
+					false,
+					false,
+					false,
+					false,
+					false,
+					false,				
+					]
+					this.state.puntos=8
+					
+				}, 500);
 
+			}
 
 			
 		}
