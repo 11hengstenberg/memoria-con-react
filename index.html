@@ -14,14 +14,19 @@
 		reglas(id,carta) {
 			if (this.state.cartas1===null){
 				this.state.cartas1=carta
+				this.state.estadocarta1=id
 				
 			}
 			else if(this.state.cartas2===null){
 				this.state.cartas2=carta
+				this.state.estadocarta2=id
 				
 			}
 
+
 			this.state.estado[id]=!this.state.estado[id]
+			this.state.turnos=+1
+			console.log(this.state.turnos)
 			this.forceUpdate()
 			
 
@@ -29,19 +34,24 @@
 			if(this.state.cartas1 && this.state.cartas2){
 				if(this.state.cartas1===this.state.cartas2){
 					this.state.puntos+=1
-					console.log(this.state.puntos)
-
+					
+					this.state.turnos=+1
 					this.state.cartas1=null
 					this.state.cartas2=null
 				}
 				else{
-
-					this.state.cartas2=null
 					setTimeout(() => {
-				
-					}, 10000);
-					this.state.estado[id]=false
-					this.forceUpdate()
+						this.state.turnos=+1
+
+						
+						this.state.cartas2=null
+						this.state.cartas1=null
+						this.state.estado[this.state.estadocarta1]=false
+						this.state.estado[id]=false
+						this.forceUpdate()
+					}, 500);
+
+
 					
 					return
 				}
@@ -61,6 +71,10 @@
 				cartas1:null,
 				cartas2:null,
 				turnos:0,
+				estadocarta1:null,
+				estadocarta2:null,
+		
+			
 
 				estado:[
 				false,
@@ -85,7 +99,7 @@
 		}
 
    		render(){
-
+			
 			var listacompleta=[    
 					"./imagenes/houston.jpg","./imagenes/milwaukee.png","./imagenes/toronto.png","./imagenes/dallas.jpg", "./imagenes/gsw.jpg","./imagenes/okc.jpg",
 					"./imagenes/houston.jpg","./imagenes/lakers.jpg","./imagenes/lakers.jpg","./imagenes/dallas.jpg","./imagenes/miami.jpg", 
@@ -95,6 +109,8 @@
 
 			var lista=[]
 			var contador=0
+		
+
 			
 			var grid = {
    				border: "black",
@@ -107,10 +123,11 @@
 			while (contador!= 16){
 				
 				if(!this.state.estado[contador]){
-					lista.push(<img src= {"./imagenes/nba-logo.png"} onClick={this.reglas.bind(this,contador,listacompleta[contador]) }/> )
+					lista.push(<img src= {"./imagenes/nba-logo.png"} onClick={this.reglas.bind(this,contador,listacompleta[contador],) }/> )
 				}
 				else{
-					lista.push(<img src= {listacompleta[contador]} onClick={this.reglas.bind(this,contador,listacompleta[contador]) }/>)
+					lista.push(<img src= {listacompleta[contador]} onClick={this.reglas.bind(this,contador,listacompleta[contador],) }/>)
+					
 				}
 				
 				contador=contador+1
